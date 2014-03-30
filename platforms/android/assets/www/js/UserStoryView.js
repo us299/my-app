@@ -26,8 +26,20 @@ var UserStoryView = function (adapter, template) {
         //document.body.insertBefore(p, document.body.firstChild);
 
         var tag = document.createElement("textarea");
-        tag.style = "margin-left:10% ;margin-right:auto;margin-top:10px;color: #454545;border-radius: 6px;";
-        tag.rows = 4;
+        tag.setAttribute("style","margin-left: 10%; margin-top: 10px; width: 80%; background-color: #dfe2e2; border-style:none;");
+        //tag.setAttribute("style","width: 1000px; background-color: yellow;");
+        //tag.style.width = "80%";
+                    /*text-align: left;
+                    clear: both;
+                    margin-left: auto;
+                    margin-right:auto;
+                    padding-left: 10px;
+                    border: 1px solid #9daca9;
+                    border-radius: 6px;
+                    background-color: #ffffff;
+                    color: #454545;
+                    width: 80%;";*/
+        tag.rows = 8;
         tag.cols = 50;
         tag.innerHTML = "Loons are so cool!";
 
@@ -39,7 +51,7 @@ var UserStoryView = function (adapter, template) {
         */
 
         var thisone = document.getElementsByClassName("storyadd")[0];
-        thisone.insertBefore(tag, thisone.firstChild);
+        thisone.parentNode.insertBefore(tag, thisone);
 
         //event.preventDefault();
         //alert("login");
@@ -86,7 +98,7 @@ var UserStoryView = function (adapter, template) {
     }
     var options =   {   quality: 50,
                         destinationType: Camera.DestinationType.DATA_URL,
-                        sourceType: 1,      // 0:Photo Library, 1=Camera, 2=Saved Album
+                        sourceType: 0,      // 0:Photo Library, 1=Camera, 2=Saved Album
                         encodingType: 0     // 0=JPG 1=PNG
                     };
  
@@ -95,9 +107,11 @@ var UserStoryView = function (adapter, template) {
             tag.src = "data:image/jpeg;base64," + imageData;
             tag.width = "300";
             tag.height = "300";
+            tag.setAttribute("style","margin-left: 10%; margin-top: 10px;");
+            //tag.align = "middle";
             //$('.employee-image', this.el).attr('src', "data:image/jpeg;base64," + imageData);
             var thisone = document.getElementsByClassName("storyadd")[0];
-            thisone.insertBefore(tag, thisone.firstChild);
+            thisone.parentNode.insertBefore(tag, thisone);
         },
         function() {
             alert('Error taking picture', 'Error');
@@ -123,12 +137,13 @@ var UserStoryView = function (adapter, template) {
  
     navigator.camera.getPicture(
         function(imageData) {
-            tag.src = imageData;
-            tag.width = "100";
-            tag.height = "100";
+            tag.src = "data:video/jpeg;base64," + imageData;
+            tag.width = "300";
+            tag.height = "300";
+
             //$('.employee-image', this.el).attr('src', "data:image/jpeg;base64," + imageData);
             var thisone = document.getElementsByClassName("storyadd")[0];
-            thisone.insertBefore(tag, thisone.firstChild);
+            thisone.parentNode.insertBefore(tag, thisone);
         },
         function() {
             alert('Error taking picture', 'Error');
@@ -141,4 +156,6 @@ var UserStoryView = function (adapter, template) {
 
     this.initialize();
 
-};
+}
+
+
